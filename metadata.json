@@ -1,0 +1,6 @@
+{
+  "name": "Calculadora de Caja CIC R.L.",
+  "description": "Calculadora financiera y cinta de arqueo para receptores pagadores de CIC R.L. con detección automática de ingresos y egresos según código de transacción.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
