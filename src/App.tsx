@@ -288,6 +288,11 @@ export default function App() {
       isClosed: false,
       notes: '',
     };
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newSession));
+    } catch {
+      // ignore
+    }
     setSession(newSession);
     setIsResetConfirmOpen(false);
   };
@@ -336,15 +341,16 @@ export default function App() {
         notes={session.notes || ''}
       />
 
-      {/* Modal Confirmación Cierre de Turno */}
+      {/* Modal Confirmación: Eliminar y Finalizar Día */}
       {isResetConfirmOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs no-print">
           <div className="bg-white text-slate-900 rounded-3xl p-6 max-w-md w-full shadow-2xl border border-slate-200 space-y-4 animate-in fade-in zoom-in-95 font-sans">
-            <h3 className="font-bold text-base text-slate-900">
-              Cierre de Turno · Ventanilla CIC R.L.
+            <h3 className="font-bold text-base text-slate-900 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-600" />
+              <span>Eliminar y Finalizar Día · Ventanilla CIC R.L.</span>
             </h3>
-            <p className="text-xs text-slate-600">
-              Al cerrar el turno, se archiva la cinta actual. El fondo inicial y final siempre se mantiene en <strong>Q 2,000.00</strong> fijos para el siguiente día.
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Al finalizar el día, se archivan y eliminan las transacciones de la memoria local del navegador. El fondo inicial y final para mañana siempre queda fijado en <strong>Q 2,000.00</strong> reglamentarios.
             </p>
 
             <div className="p-3.5 bg-slate-50 rounded-2xl text-xs font-mono space-y-2 border border-slate-200">
@@ -374,16 +380,16 @@ export default function App() {
               <button
                 type="button"
                 onClick={confirmResetSession}
-                className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-md transition-all active:scale-98"
+                className="w-full py-3 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-xl shadow-md transition-all active:scale-98 cursor-pointer"
               >
-                Cerrar Turno (Fondo Fijo Q 2,000.00 en Gaveta)
+                Confirmar: Eliminar y Finalizar Día (Fondo Q 2,000.00)
               </button>
               <button
                 type="button"
                 onClick={() => setIsResetConfirmOpen(false)}
-                className="w-full py-2 text-slate-500 hover:text-slate-800 text-xs font-semibold"
+                className="w-full py-2 text-slate-500 hover:text-slate-800 text-xs font-semibold cursor-pointer"
               >
-                Cancelar y Continuar en este Turno
+                Cancelar y Continuar en este Día
               </button>
             </div>
           </div>

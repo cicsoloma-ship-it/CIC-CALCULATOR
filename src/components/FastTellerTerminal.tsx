@@ -1070,13 +1070,20 @@ export const FastTellerTerminal: React.FC<FastTellerTerminalProps> = ({
         )}
 
         {/* Barra inferior de opciones de caja */}
-        <div className="flex items-center justify-end pt-1 border-t border-slate-200 text-xs text-slate-500 font-sans">
+        <div className="flex items-center justify-between pt-2 border-t border-slate-200 text-xs text-slate-500 font-sans">
+          <div className="flex items-center gap-1.5 text-[11px] text-slate-400 font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="hidden sm:inline">Guardado en caché local</span>
+          </div>
+
           <button
             type="button"
             onClick={onResetSession}
-            className="text-[11px] text-slate-400 hover:text-rose-600 transition-colors py-0.5 px-2"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition-all cursor-pointer shadow-2xs hover:shadow-xs active:scale-98"
+            title="Finalizar el día y limpiar caja para mañana (Fondo fijo Q 2,000.00)"
           >
-            Cerrar Turno
+            <Trash2 className="w-3.5 h-3.5 text-rose-600" />
+            <span>Eliminar y Finalizar Día</span>
           </button>
         </div>
 
